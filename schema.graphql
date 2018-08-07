@@ -1,0 +1,51 @@
+# projectId: cjhoh936q44gz0181840a6nlj
+# version: 59
+
+type Sermon @model {
+  id: ID! @isUnique
+  name: String!
+  preachedAt: DateTime!
+  url: String! @isUnique
+  duration: Int!
+  series: Series @relation(name: "SermonOnSeries")
+  speakers: [Speaker!]! @relation(name: "SermonOnSpeaker")
+  event: Event @relation(name: "SermonOnEvent")
+  passage: String
+}
+
+type Series @model {
+  id: ID! @isUnique
+  name: String!
+  subtitle: String
+  sermons: [Sermon!]! @relation(name: "SermonOnSeries")
+  image3x2Url: String
+}
+
+type Speaker @model {
+  id: ID! @isUnique
+  name: String!
+  sermons: [Sermon!]! @relation(name: "SermonOnSpeaker")
+}
+
+type Event @model {
+  id: ID! @isUnique
+  name: String!
+  sermons: [Sermon!]! @relation(name: "SermonOnEvent")
+}
+
+type File @model {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
+
+type User @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+}
