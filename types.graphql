@@ -1,6 +1,3 @@
-# projectId: cjhoh936q44gz0181840a6nlj
-# version: 59
-
 type Sermon @model {
   id: ID! @isUnique
   name: String!
@@ -23,13 +20,13 @@ type Series @model {
 
 type Speaker @model {
   id: ID! @isUnique
-  name: String!
+  name: String! @isUnique
   sermons: [Sermon!]! @relation(name: "SermonOnSpeaker")
 }
 
 type Event @model {
   id: ID! @isUnique
-  name: String!
+  name: String! @isUnique
   sermons: [Sermon!]! @relation(name: "SermonOnEvent")
 }
 
